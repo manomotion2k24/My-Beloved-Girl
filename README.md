@@ -53,7 +53,7 @@ Multumesc pentru ca esti! I LOVE YOU, Iub!
   }
 
   let intervalId = setInterval(createHeart, 300);
-  setTimeout(() => { clearInterval(intervalId); }, 60000); // 60 de secunde
+  setTimeout(() => { clearInterval(intervalId); }, 600000); // 60 de secunde
 
   document.body.addEventListener('touchstart', function() {
     const bigHeart = document.getElementById('touchHeart');
