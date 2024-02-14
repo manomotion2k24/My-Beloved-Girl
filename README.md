@@ -1,6 +1,4 @@
-Mulțumesc pentru că ești! 
-I love YOU!
-
+Multumesc pentru ca esti! I LOVE YOU, Iub!
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,9 +23,9 @@ I love YOU!
         font-size: 100px; /* Mărimea inimii mari */
         color: red;
         display: none;
+        z-index: 1000; /* Asigurați-vă că inima mare este deasupra tuturor */
       }
       model-viewer {
-        display: block;
         width: 100%;
         height: 500px; /* Ajustează înălțimea după necesități */
       }
@@ -35,25 +33,31 @@ I love YOU!
 </head>
 <body>
 
-<model-viewer id="iosModelViewer" src="Poem5.glb" ios-src="Poem5.usdz" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" shadow-intensity="1" alt="A 3D model of an avatar"></model-viewer>
+<model-viewer id="iosModelViewer" src="poem5.glb" ios-src="poem5.usdz" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" shadow-intensity="1" alt="A 3D model of an avatar"></model-viewer>
 
 <div id="touchHeart" class="big-heart">❤️</div>
 
 <script>
-  checkIfIOS(); // Verificăm dacă utilizatorul este pe iOS la încărcarea paginii
-
   function createHeart() {
-    // Cod pentru generarea inimioarelor mici
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.textContent = '❤️'; // Emoji inimioară
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = Math.random() * 2 + 3 + 's'; // Durata între 3 și 5 secunde
+    heart.style.fontSize = Math.random() * 20 + 10 + 'px'; // Mărimea între 10 și 30px
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 5000); // Elimină inimioara după 5 secunde
   }
 
-  // Inițierea inimioarelor care cad
   let intervalId = setInterval(createHeart, 300);
   setTimeout(() => { clearInterval(intervalId); }, 60000); // 60 de secunde
 
-  // Funcție pentru afișarea inimii mari la atingerea ecranului
   document.body.addEventListener('touchstart', function() {
     const bigHeart = document.getElementById('touchHeart');
-    bigHeart.style.display = 'block'; // Afișăm inima mare
+    bigHeart.style.display = 'block';
     setTimeout(() => { bigHeart.style.display = 'none'; }, 2000); // Ascundem inima după 2 secunde
   });
 </script>
