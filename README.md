@@ -16,19 +16,13 @@ I love YOU!
         color: red; /* Culoarea inimioarelor */
         animation: fall linear;
       }
-      /* Ascundem model-viewer-ul inițial pentru a-l afișa doar pe iOS */
+      /* Afisam model-viewer doar daca este necesar */
       model-viewer {
         display: none;
       }
     </style>
 </head>
 <body>
-
-<!-- Mesaj pentru utilizatorii de iOS -->
-<p id="iosMessage" style="display: none;">Deschide în Safari dacă ești pe Apple</p>
-
-<!-- Link înapoi la pagina produsului -->
-<p><a href="https://vimeo.com/user74836700">Înapoi la pagina produsului</a></p>
 
 <!-- Vizualizatorul de model 3D -->
 <model-viewer id="iosModelViewer" src="poem5.glb" ios-src="poem5.usdz" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" shadow-intensity="1" alt="A 3D model of an avatar"></model-viewer>
@@ -47,7 +41,6 @@ I love YOU!
     if (!!navigator.platform) {
       while (iDevices.length) {
         if (navigator.platform === iDevices.pop()){ 
-          document.getElementById('iosMessage').style.display = 'block';
           // Afișăm model-viewer doar pe dispozitivele iOS
           document.getElementById('iosModelViewer').style.display = 'block';
           return true; 
@@ -59,14 +52,25 @@ I love YOU!
 
   checkIfIOS(); // Verificăm dacă utilizatorul este pe iOS la încărcarea paginii
 
-  // Codul pentru inimioare rămâne neschimbat
+  // Funcție pentru crearea inimioarelor care cad
   function createHeart() {
-    // Restul funcției createHeart
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.textContent = '❤️'; // Emoji inimioară
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = Math.random() * 2 + 3 + 's'; // Durata între 3 și 5 secunde
+    heart.style.fontSize = Math.random() * 20 + 10 + 'px'; // Mărimea între 10 și 30px
+    document.body.appendChild(heart);
+
+    // Elimină inimioara după ce a terminat de căzut
+    setTimeout(() => {
+      heart.remove();
+    }, 5000); // Elimină inimioara după 5 secunde (durata maximă de animație)
   }
 
   // Inițierea inimioarelor care cad
   let intervalId = setInterval(createHeart, 300);
-  setTimeout(() => { clearInterval(intervalId); }, 60000);
+  setTimeout(() => { clearInterval(intervalId); }, 60000); // 60 de secunde
 </script>
 
 </body>
