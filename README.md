@@ -33,7 +33,7 @@ Multumesc pentru ca esti! I LOVE YOU, Iub!
 </head>
 <body>
 
-<model-viewer id="iosModelViewer" src="poem5.glb" ios-src="poem5.usdz" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" shadow-intensity="1" alt="A 3D model of an avatar"></model-viewer>
+<model-viewer id="iosModelViewer" src="poem.glb" ios-src="poem.usdz" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" shadow-intensity="4" alt="A 3D model of an avatar"></model-viewer>
 
 <div id="touchHeart" class="big-heart">❤️</div>
 
