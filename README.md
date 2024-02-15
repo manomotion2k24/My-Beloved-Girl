@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -37,7 +36,8 @@
           transform: translateY(-5px);
         }
       }
-      .ar-button > span {
+      .levitate {
+        display: inline-block; /* Asigură-te că span-ul poate fi transformat */
         animation: levitate 1s ease-in-out infinite;
       }
     </style>
@@ -46,7 +46,7 @@
 
 <model-viewer ar camera-controls touch-action="pan-y" src="poem.glb" alt="A 3D model">
   <button slot="ar-button" class="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; top: 16px; right: 16px; ">
-      <span>👋</span> Activează modul AR
+      <span class="levitate">👋</span> Activează modul AR
   </button>
 </model-viewer>
 
