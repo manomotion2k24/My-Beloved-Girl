@@ -1,4 +1,4 @@
-Bucură-te de acest model 3D la tine în cameră 
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
