@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+Bucură-te de acest model 3D la tine în cameră 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,20 +21,45 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 100px; /* Mărimea inimii mari */
+        font-size: 100px;
         color: red;
         display: none;
-        z-index: 1000; /* Asigurați-vă că inima mare este deasupra tuturor */
+        z-index: 1000;
       }
       model-viewer {
         width: 100%;
-        height: 500px; /* Ajustează înălțimea după necesități */
+        height: 500px;
+      }
+      .ar-button {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 10;
+        background-color: #f1f1f1;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      @keyframes levitate {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .ar-button .hand {
+        display: inline-block;
+        animation: levitate 2s ease-in-out infinite;
       }
     </style>
 </head>
 <body>
 
 <model-viewer id="iosModelViewer" src="poem.glb" ios-src="poem.usdz" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" shadow-intensity="4" alt="A 3D model of an avatar"></model-viewer>
+
+<button class="ar-button"><span class="hand">✋</span> Activează modul AR</button>
 
 <div id="touchHeart" class="big-heart">❤️</div>
 
@@ -50,25 +75,26 @@
 
     setTimeout(() => {
       heart.remove();
-    }, 5000); // Elimină inimioara după 5 secunde
+    }, 5000);
   }
 
   let intervalId = setInterval(createHeart, 300);
-  setTimeout(() => { clearInterval(intervalId); }, 60000); // Oprește crearea inimioarelor după 60 de secunde
+  setTimeout(() => { clearInterval(intervalId); }, 60000);
 
   document.body.addEventListener('touchstart', function() {
     const bigHeart = document.getElementById('touchHeart');
     bigHeart.style.display = 'block';
-    setTimeout(() => { bigHeart.style.display = 'none'; }, 2000); // Ascundem inima mare după 2 secunde
+    setTimeout(() => { bigHeart.style.display = 'none'; }, 2000);
   });
 
-  // Gestionarea evenimentelor AR
+  document.querySelector('.ar-button').addEventListener('click', () => {
+    document.querySelector('model-viewer').activateAR();
+  });
+
   document.querySelector('model-viewer').addEventListener('ar-status', (event) => {
     if (event.detail.status === 'session-started') {
-      // Aici poți adăuga cod pentru personalizarea experienței la intrarea în AR
       console.log("AR session started");
     } else if (event.detail.status === 'session-ended') {
-      // Aici poți adăuga cod pentru acțiuni la ieșirea din AR
       console.log("AR session ended");
     }
   });
